@@ -27,7 +27,6 @@ spec = Gem::Specification.new do |s|
   s.test_files = Dir.glob('test/*.rb')
 
   s.authors            = ["Garrett Rooney", "Pierre Baillet"]
-  s.email             = "rooneg@electricjellyfish.net"
+  s.email             = ["rooneg@electricjellyfish.net", "oct@fotonauts.net"]
   s.homepage          = "http://genx4r.rubyforge.org"
-  s.rubyforge_project = "genx4r"
 end
