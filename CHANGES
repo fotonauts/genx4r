@@ -1,0 +1,43 @@
+[ Changes for 0.05 - Nov 25, 2004 ]
+
+* Added GenX::Builder, which works much like Jim Weirich's Builder
+  library, but filters the output through GenX, so you get the benefit
+  of sanity checking.
+
+* Fixed some bugs in the element, namespace, and attribute declaration
+  code that could have resulted in spurious errors when there was nothing
+  wrong.
+
+[ Changes for 0.04 - Oct 1, 2004 ]
+
+* Ruby 1.6.8 compatability.  Really.  I mean it this time.  Sigh.
+
+* Update to latest genx, fixes a memory leak in genxDispose.
+
+* Added a gemspec for RubyGems installation.
+
+[ Changes for 0.03 - Jul 11, 2004 ]
+
+* Use a slightly modified version of setup.rb for build/install/tests 
+  instead of manually running extconf.rb for build/install and rake for
+  tests.  This required a rather massive reorganization of the source
+  tree.  Thank $DIETY for 'svn move' ;-)
+
+* Don't require IO or StringIO objects for GenX::Writer#document, instead
+  just require that the object responds to the #<< method.
+  Suggested by Christian Neukirchen <chneukirchen at gmail.com>.
+
+* Add #begin_document, #end_document, #begin_element, and #end_element 
+  methods to GenX::Writer, since it's sometimes inconvenient to make use
+  of blocks when creating documents and elements.
+  Suggested by Christian Neukirchen <chneukirchen at gmail.com>.
+
+[ Changes for 0.02 - Jun 16, 2004 ]
+
+* Ruby 1.6.8 compatability.
+
+* Added CHANGES file ;-)
+
+[ Changes for 0.01 - Jun 13, 2004 ]
+
+* Initial release.

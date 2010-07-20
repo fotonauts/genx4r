@@ -1,0 +1,31 @@
+This is GenX4r, a Ruby extension that wraps Tim Bray's genx library for 
+generating correct, cannonical xml.
+
+For more information on genx itself please refer to it's web page at:
+
+  http://www.tbray.org/ongoing/When/200x/2004/02/20/GenxStatus
+
+GenX4r should build through the fairly standard setup.rb process...
+
+$ ruby setup.rb config
+$ ruby setup.rb setup
+
+Once you've compiled it, run the unit tests via 'ruby setup.rb check'
+to confirm that GenX4r is functioning properly, then feel free to install 
+it via 'ruby setup.rb install' and let me know what you think!
+
+GenX4r is made available under the same license as genx, see the LICENSE 
+file for more details.
+
+setup.rb is under the LGPL, see it's web page at
+
+  http://i.loveruby.net/en/prog/setup.html
+
+for details.
+
+There is currently no real documentation on how to use GenX4r, but until 
+that changes the unit tests should provide a useful introduction.
+
+Please direct any questions to the author,
+
+Garrett Rooney <rooneg@electricjellyfish.net>

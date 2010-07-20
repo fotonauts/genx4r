@@ -1,0 +1,6 @@
+What do we do if the writer goes out of scope and is GC'd before the 
+namespaces, elements, and attributes that were declared with it?
+
+Documentation.
+
+More unit tests, lots more unit tests...
