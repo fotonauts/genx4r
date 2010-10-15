@@ -2,7 +2,7 @@ require 'rubygems'
 
 spec = Gem::Specification.new do |s|
   s.name    = 'genx4r-fotopedia'
-  s.version = '0.6'
+  s.version = '0.7'
 
   s.summary = <<-EOF
     GenX4r is a Ruby wrapper around the GenX library, which allows you to

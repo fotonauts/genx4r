@@ -190,7 +190,7 @@ writer_comment (VALUE self, VALUE arg)
 
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
-  GENX4R_ERR (genxComment (w, (constUtf8) RSTRING (arg)->ptr), w);
+  GENX4R_ERR (genxComment (w, (constUtf8) RSTRING_PTR (arg)), w);
 
   return Qnil;
 }
@@ -231,7 +231,7 @@ writer_attribute (int argc, VALUE *argv, VALUE self)
   if (xmlns)
     {
       Check_Type (xmlns, T_STRING);
-      nslen = RSTRING (xmlns)->len;
+      nslen = RSTRING_LEN (xmlns);
     }
 
   if (name)
@@ -242,13 +242,13 @@ writer_attribute (int argc, VALUE *argv, VALUE self)
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
   if (attr)
-    GENX4R_ERR (genxAddAttribute (attr, (constUtf8) RSTRING (value)->ptr), w);
+    GENX4R_ERR (genxAddAttribute (attr, (constUtf8) RSTRING_PTR (value)), w);
   else
     GENX4R_ERR (genxAddAttributeLiteral
                  (w,
-                  nslen ?  (constUtf8) RSTRING (xmlns)->ptr : NULL,
-                  (constUtf8) RSTRING (name)->ptr,
-                  (constUtf8) RSTRING (value)->ptr), w);
+                  nslen ?  (constUtf8) RSTRING_PTR (xmlns) : NULL,
+                  (constUtf8) RSTRING_PTR (name),
+                  (constUtf8) RSTRING_PTR (value)), w);
 
   return Qnil;
 }
@@ -286,7 +286,7 @@ writer_begin_element (int argc, VALUE *argv, VALUE self)
   if (xmlns)
     {
       Check_Type (xmlns, T_STRING);
-      nslen = RSTRING (xmlns)->len;
+      nslen = RSTRING_LEN (xmlns);
     }
 
   if (name)
@@ -299,8 +299,8 @@ writer_begin_element (int argc, VALUE *argv, VALUE self)
   else
     GENX4R_ERR (genxStartElementLiteral
                  (w,
-                  nslen ? (constUtf8) RSTRING (xmlns)->ptr : NULL,
-                  (constUtf8) RSTRING (name)->ptr), w);
+                  nslen ? (constUtf8) RSTRING_PTR (xmlns) : NULL,
+                  (constUtf8) RSTRING_PTR (name)), w);
 
   return Qnil;
 }
@@ -345,8 +345,8 @@ writer_pi (VALUE self, VALUE target, VALUE text)
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
   GENX4R_ERR (genxPI (w,
-                      (constUtf8) RSTRING (target)->ptr,
-                      (constUtf8) RSTRING (text)->ptr), w);
+                      (constUtf8) RSTRING_PTR (target),
+                      (constUtf8) RSTRING_PTR (text)), w);
 
   return Qnil;
 }
@@ -360,7 +360,7 @@ writer_text (VALUE self, VALUE text)
 
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
-  GENX4R_ERR (genxAddText (w, (constUtf8) RSTRING (text)->ptr), w);
+  GENX4R_ERR (genxAddText (w, (constUtf8) RSTRING_PTR (text)), w);
 
   return Qnil;
 }
@@ -414,8 +414,8 @@ writer_declare_namespace (int argc, VALUE *argv, VALUE self)
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
   ns = genxDeclareNamespace (w,
-                             (constUtf8) RSTRING (uri)->ptr,
-                             prefix ? (constUtf8) RSTRING (prefix)->ptr : NULL,
+                             (constUtf8) RSTRING_PTR (uri),
+                             prefix ? (constUtf8) RSTRING_PTR (prefix) : NULL,
                              &st);
 
   if (st)
@@ -456,7 +456,7 @@ writer_declare_element (int argc, VALUE *argv, VALUE self)
 
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
-  elem = genxDeclareElement (w, ns, RSTRING (name)->ptr, &st);
+  elem = genxDeclareElement (w, ns, RSTRING_PTR (name), &st);
   if (st)
     rb_raise (rb_cGenXException, "%s", genxGetErrorMessage (w, st));
 
@@ -495,7 +495,7 @@ writer_declare_attribute (int argc, VALUE *argv, VALUE self)
 
   Data_Get_Struct (self, struct genxWriter_rec, w);
 
-  attr = genxDeclareAttribute (w, ns, RSTRING (name)->ptr, &st);
+  attr = genxDeclareAttribute (w, ns, RSTRING_PTR (name), &st);
   if (st)
     rb_raise (rb_cGenXException, "%s", genxGetErrorMessage (w, st));
 
